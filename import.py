@@ -20,9 +20,10 @@ def check_replication(given_name, sn):
     if so add a string of random integer to the common name and the uid
     """
     if query_ldap(str(given_name + " " + sn)):
+	random_str_addon = generate_random_digits()
         return {
-            "cn": str(given_name + " " + sn + " " + generate_random_digits()),
-            "uid": given_name + "." + sn + generate_random_digits()
+            "cn": given_name + " " + sn + " " + random_str_addon,
+            "uid": given_name + "." + sn + random_str_addon
         }
 
     return {
